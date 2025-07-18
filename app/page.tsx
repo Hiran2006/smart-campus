@@ -1,103 +1,235 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { BookOpen, Users, BarChart2, Clock, CheckCircle } from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 flex items-center">
+                <span className="text-2xl font-bold text-indigo-600">
+                  Smart<span className="text-gray-800">Campus</span>
+                </span>
+              </div>
+            </div>
+            <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-8">
+              <a
+                href="#features"
+                className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
+              >
+                Features
+              </a>
+              <a
+                href="#how-it-works"
+                className="text-gray-700 hover:text-indigo-600 px-3 py-2 text-sm font-medium"
+              >
+                How it Works
+              </a>
+              <Link
+                href="/login"
+                className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors"
+              >
+                Sign In
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </nav>
+
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+              <div className="sm:text-center lg:text-left">
+                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                  <span className="block">Empowering</span>
+                  <span className="block text-indigo-600">
+                    Modern Education
+                  </span>
+                </h1>
+                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                  Streamline academic processes with our all-in-one campus
+                  management solution for students and teachers.
+                </p>
+                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                  <div className="rounded-md shadow">
+                    <Link
+                      href="/login"
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
+                  <div className="mt-3 sm:mt-0 sm:ml-3">
+                    <Link
+                      href="#features"
+                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+          <img
+            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+            alt="Students learning"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div id="features" className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+              Features
+            </h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              A better way to manage education
+            </p>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              Everything you need to manage your academic journey in one place
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+              {[
+                {
+                  name: 'Assignment Management',
+                  description:
+                    'Easily submit and track assignments with real-time updates and notifications.',
+                  icon: BookOpen,
+                },
+                {
+                  name: 'Grade Tracking',
+                  description:
+                    'View your grades and performance metrics in a clean, easy-to-understand dashboard.',
+                  icon: BarChart2,
+                },
+                {
+                  name: 'Attendance System',
+                  description:
+                    'Mark and monitor attendance with our intuitive interface, accessible from any device.',
+                  icon: CheckCircle,
+                },
+                {
+                  name: 'Classroom Collaboration',
+                  description:
+                    'Connect with teachers and classmates through our integrated communication tools.',
+                  icon: Users,
+                },
+              ].map(feature => (
+                <div key={feature.name} className="relative">
+                  <dt>
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                      <feature.icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                      {feature.name}
+                    </p>
+                  </dt>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">
+                    {feature.description}
+                  </dd>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-indigo-700">
+        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            <span className="block">
+              Ready to transform your educational experience?
+            </span>
+          </h2>
+          <p className="mt-4 text-lg leading-6 text-indigo-200">
+            Join thousands of students and teachers already using SmartCampus to
+            manage their academic journey.
+          </p>
+          <Link
+            href="/login"
+            className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto"
+          >
+            Get Started Today
+          </Link>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-white">
+        <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+          <nav
+            className="-mx-5 -my-2 flex flex-wrap justify-center"
+            aria-label="Footer"
+          >
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                About
+              </a>
+            </div>
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                Blog
+              </a>
+            </div>
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                Jobs
+              </a>
+            </div>
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                Press
+              </a>
+            </div>
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                Accessibility
+              </a>
+            </div>
+            <div className="px-5 py-2">
+              <a
+                href="#"
+                className="text-base text-gray-500 hover:text-gray-900"
+              >
+                Partners
+              </a>
+            </div>
+          </nav>
+          <p className="mt-8 text-center text-base text-gray-400">
+            &copy; {new Date().getFullYear()} SmartCampus. All rights reserved.
+          </p>
+        </div>
       </footer>
     </div>
-  );
+  )
 }

@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id            String        @id @default(cuid())
+  name          String?
+  email         String        @unique
+  emailVerified DateTime?     @map("email_verified")
+  password      String
+  role          UserRole      @default(STUDENT)
+  image         String?
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+  student       Student?
+  teacher       Teacher?
+  announcements Announcement[]
+
+  @@map("users")
+}
+
+// Student profile
+model Student {
+  id          String       @id @default(cuid())
+  userId      String       @unique
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId   String       @unique @map("student_id")
+  grade       String       // e.g., "10th", "11th", etc.
+  section     String       // e.g., "A", "B", etc.
+  attendance  Attendance[]
+  submissions Submission[]
+  
+  @@map("students")
+}
+
+// Teacher profile
+model Teacher {
+  id          String      @id @default(cuid())
+  userId      String      @unique
+  user        User        @relation(fields: [userId], references: [id])
+  teacherId   String      @unique @map("teacher_id")
+  department  String
+  subjects    String[]
+  assignments Assignment[]
+  
+  @@map("teachers")
+}
+
+// Assignment model
+model Assignment {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  dueDate     DateTime    @map("due_date")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  teacherId   String
+  teacher     Teacher     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  submissions Submission[]
+  
+  @@map("assignments")
+}
+
+// Submission model
+model Submission {
+  id           String     @id @default(cuid())
+  assignment   Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  assignmentId String
+  student      Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId    String
+  content      String
+  gradeId      String?    @unique
+  submittedAt  DateTime   @default(now()) @map("submitted_at")
+  
+  @@map("submissions")
+}
+
+// Grade model
+model Grade {
+  id           String     @id @default(cuid())
+  submissionId String     @unique
+  score        Float
+  feedback     String?
+  gradedAt     DateTime   @default(now()) @map("graded_at")
+  
+  @@map("grades")
+}
+
+// Attendance model
+model Attendance {
+  id        String         @id @default(cuid())
+  studentId String
+  student   Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date      DateTime
+  status    AttendanceStatus
+  
+  @@map("attendances")
+}
+
+// Announcement model
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  @@map("announcements")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
